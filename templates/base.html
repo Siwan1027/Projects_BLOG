@@ -9,6 +9,7 @@
 </head>
 <body>
     {% include 'navbar.html' %}
+    {% if request.user.is_authenticated %}
     <div class = 'container-fluid d-flex'>
         <div class = 'sidebar-fluid width = 25%'>
             <ul>
@@ -26,6 +27,13 @@
                 </a>
             </ul>
         </div>
+    {% else %}
+    <form action="{% url 'account:signin' %}" method = 'POST'>
+        {% csrf_token %}
+        
+
+    </form>
+    {% endif %}
         <div class = 'container'>
         {% block content %}
     

@@ -1,7 +1,7 @@
+# board/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_safe, require_POST, require_http_methods
 from django.contrib.auth.decorators import login_required
-
 from .models import Posting, Reply
 from .forms import PostingForm, ReplyForm
 
@@ -28,7 +28,7 @@ def create(request):
     
 @require_safe
 def detail(request,posting_pk):
-    posting = Posting.objects.get(pk = posting_pk)
+    posting = get_object_or_404(Posting, pk = posting_pk)
     return render(request, 'blog:detail', context = {
         'posting' : posting
     })

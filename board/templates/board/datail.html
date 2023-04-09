@@ -8,6 +8,8 @@
 <p>
     {{posting.content}}
 </p>
+{% if request.user.is_authenticated %}
+
 {% if request.user.username == posting.user.username %}
 <p>
     <a href="">
@@ -20,6 +22,6 @@
 {% comment %} {% else %}
 <form method = "POST"></form> {% endcomment %}
 {% endif %}
-
+{% endif %}
 </div>
 {% endblock content %}
