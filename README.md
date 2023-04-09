@@ -37,8 +37,6 @@
 #### navbar
 - icon 
     - to index
-- search
-    - search posting by title
 #### sidebar_l
 - userinfo
     - show if logged in
@@ -61,7 +59,6 @@
 - Github
     - 'www.github.com/{user.GitHubID}
 
-
 ### create
 - create[for only logged in user]
     - show text area for write new posting
@@ -82,7 +79,7 @@
         - direct to user info
     - show detail of specific posting
         - show buttons if posting_user == request_user
-            1. fix
+            1. modify
             2. delete
         - show buttons if posting_user != request_user
             1. like
@@ -96,4 +93,18 @@
 - show userform.as_p
 
 ### userdetail
+- userpostings with titles
+    - redirect to detail
+- userpostings with contents in 20 letters
+    - redirect to detail
+- show followers, followings
+- if request.username != login.user
+    - show follow/unfollow btn
 
+
+## DB relationships
+
+1. Postings.FK -> User.PK
+2. Reply.FK -> Posting.PK, User.PK
+3. follow <-> User
+4. like <-> User
