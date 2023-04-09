@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-{% comment %}  {% endcomment %}
+<h1>Most Like</h1>
+{% for posting in postings %}
+<ul>
+    <a href="{% url 'blog:detail' posting.pk %}">
+        {{posting.title}}
+    </a>
+</ul>
+{% endfor %}
 {% endblock content %}

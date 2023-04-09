@@ -5,19 +5,38 @@ from django.contrib.auth.decorators import login_required
 from .models import Posting, Reply
 from .forms import PostingForm, ReplyForm
 
-# Create your views here.
-
+@require_safe
 def index(request):
+    postings = Posting.objects.order_by(Posting.like_user.count())
     return render(request, 'board/index.html')
 
+@login_required
+@require_POST
 def create(request):
+    if request.method == 'POST':
+        form = PostingForm(request.POST)
+        if form.is_valid():
+            posting = form.save(commit=False)
+            posting.user = request.user
+            posting.save()
+            return redirect(request, 'blog:detail', posting.pk)
+    else : 
+        form = PostingForm()
+        return render(request, 'board:create', context ={
+            'form' : form
+        })
+    
+@require_safe
+def detail(request,posting_pk):
+    posting = Posting.objects.get(pk = posting_pk)
+    return render(request, 'blog:detail', context = {
+        'posting' : posting
+    })
+@login_required
+@require_POST
+def update(request,posting_pk):
     pass
-
-def detail(request):
-    pass
-
-def update(request):
-    pass
-
-def delete(request):
+@login_required
+@require_POST
+def delete(request,posting_pk):
     pass
