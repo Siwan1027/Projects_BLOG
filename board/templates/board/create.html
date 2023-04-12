@@ -1,7 +1,7 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 {% block content %}
 {% load bootstrap5%}
-<form action="{% url 'board:create' posting.pk %}" method="POST">
+<form action="{% url 'board:create' %}" method="POST">
     {% csrf_token %}
     {% bootstrap_form form%}
 

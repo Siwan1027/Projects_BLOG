@@ -15,7 +15,7 @@
             {% if request.user.is_authenticated %}
                 <div class="col-md-3">
                     <ul>
-                        <a href="#">username</a>
+                        <a href="#">{{user.username}}</a>
                     </ul>
                     <ul>postings</ul>
                     <ul>replies</ul>
@@ -49,7 +49,7 @@
         {% endif %}
             <div class="col-md-9">
                 {% block content %}
-                {% endblock %}
+                {% endblock content%}
             </div>
         </div>
     </div>

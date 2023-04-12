@@ -8,10 +8,12 @@ from .forms import PostingForm, ReplyForm
 @require_safe
 def index(request):
     # postings = Posting.objects.order_by(Posting.like_user.count())
+    if request.user.is_authenticated:
+        user = request.user
     return render(request, 'board/index.html')
 
 @login_required
-@require_POST
+@require_http_methods(['GET', 'POST'])
 def create(request):
     if request.method == 'POST':
         form = PostingForm(request.POST)
@@ -19,17 +21,17 @@ def create(request):
             posting = form.save(commit=False)
             posting.user = request.user
             posting.save()
-            return redirect(request, 'blog:detail', posting.pk)
+            return redirect(request, 'board:detail', posting.pk)
     else : 
         form = PostingForm()
-        return render(request, 'board:create', context ={
+        return render(request, 'board/create.html', {
             'form' : form
         })
     
 @require_safe
 def detail(request,posting_pk):
     posting = get_object_or_404(Posting, pk = posting_pk)
-    return render(request, 'blog:detail', context = {
+    return render(request, 'board:detail', context = {
         'posting' : posting
     })
 
