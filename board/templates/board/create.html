@@ -1,5 +1,12 @@
 {% extends base.html %}
 {% block content %}
-{% comment %} 글작성 {% endcomment %}
+{% load bootstrap5%}
+<form action="{% url 'board:create' posting.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form%}
 
+    <button class = 'btn btn-primary'>
+        write
+    </button>
+</form>
 {% endblock content %}

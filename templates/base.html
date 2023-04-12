@@ -24,7 +24,12 @@
                     <ul>
                     {% comment %} href to create {% endcomment %}
                         <a href="{% url 'board:create' %}">
-                            <button>new posting</button>
+                            <button type="button" class="btn btn-primary"> new posting</button>
+                        </a>
+                    </ul>
+                    <ul>
+                        <a href="{% url 'account:signout' %}">
+                            <button type="button" class="btn btn-primary">log out</button>
                         </a>
                     </ul>
                 </div>

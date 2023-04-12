@@ -47,7 +47,7 @@ def signup(request):
         })
     
 
-def logout(request):
+def signout(request):
     logout(request)
     return redirect('board:index')
 
