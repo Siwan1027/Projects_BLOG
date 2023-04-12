@@ -7,7 +7,7 @@ from .forms import PostingForm, ReplyForm
 
 @require_safe
 def index(request):
-    postings = Posting.objects.order_by(Posting.like_user.count())
+    # postings = Posting.objects.order_by(Posting.like_user.count())
     return render(request, 'board/index.html')
 
 @login_required

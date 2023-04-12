@@ -1,13 +1,13 @@
 {% extends 'account_base.html' %}
 {% block content %}
-<h1>Sign Up</h1>
+<h1>Sign In</h1>
 
 <form method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
     
     <div>
-        <button class="btn btn-primary">signup</button>
+        <button class="btn btn-primary">signin</button>
     </div>
 </form>
 {% endblock content %}
