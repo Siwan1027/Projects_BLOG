@@ -25,7 +25,7 @@ def signin(request):
         return redirect(request.GET.get('next') or 'board:index')
     else :
         form = AuthenticationForm()
-    return render(request, 'account/singin.html', {
+    return render(request, 'account/signin.html', {
         'form' : form
     })
 
