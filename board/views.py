@@ -32,6 +32,7 @@ def detail(request,posting_pk):
     return render(request, 'blog:detail', context = {
         'posting' : posting
     })
+
 @login_required
 @require_POST
 def update(request,posting_pk):
