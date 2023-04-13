@@ -1,28 +1,34 @@
-# Blog
+# Blog with Animal Crossing wiki
+
+<img src="https://blog.kakaocdn.net/dn/6Yr5Z/btqCymfM6RQ/bqyCiPRsnRClX3bN7TymK0/img.png" width="50px" height="50px" title="AnimalCrossing_Logo"/>
 
 ## Models
 
-### User
+### User[AbstractUser]
 - required info
     1. username
     2. password
-    3. GitHub ID
+    3. like_postings
+    4. follow
 ### Posting
 - required info
     1. title
     2. content
     3. created_at
     4. updated_at
+    5. user(FK)
 ### reply
 - required info
     1. content
     2. created_at
     3. updated_at
+    4. user(FK)
+    5. poating(FK)
 ## forms
 
 ### UserForm
 - auth
-    1. all
+    1. username
 ### PostingForm
 - auth
     1. title
@@ -37,7 +43,23 @@
 #### navbar
 - icon 
     - to index
-#### sidebar_l
+- positings
+    - show all posting
+        - paginating by 10 postings
+- now available
+    - show all fishes, bugs, sea creatures order by price
+- dict
+    - show all the informations that fits each section
+    - sections
+        - fishes
+        - bugs
+        - sea creatures
+        - fossils
+        - furnitures
+        - villagers
+        - events
+
+#### sidebar
 - userinfo
     - show if logged in
         - username
@@ -49,8 +71,8 @@
         - button for write new posting
             - direct to create.html
     - show if not logged in
-        - show login bars
-        - button for login
+        - button for signin
+        - button for signup
 #### block content
 
 #### footer
@@ -58,6 +80,8 @@
     - GitHub
 - Github
     - 'www.github.com/{user.GitHubID}
+- nookipedia
+    - 'www.nookipedia.com'
 
 ### create
 - create[for only logged in user]
@@ -88,9 +112,13 @@
 ### index
 - index
     - show 5 postings most liked
+    - show 10 fishes can caught in now
 
 ### signup
-- show userform.as_p
+- show signup form
+
+### signin
+- show signin form
 
 ### userdetail
 - userpostings with titles
