@@ -8,9 +8,14 @@
 - required info
     1. username
     2. password
+<<<<<<< HEAD
     3. like_postings(MtoM)
     4. follow(MtoM)
     5. caught(MtoM)
+=======
+    3. like_postings
+    4. follow
+>>>>>>> parent of e03dccb (Update README.md)
 ### Posting
 - required info
     1. title
