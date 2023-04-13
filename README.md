@@ -8,8 +8,8 @@
 - required info
     1. username
     2. password
-    3. like_postings
-    4. follow
+    3. like_postings [MtoM]
+    4. follow [MtoM]
 ### Posting
 - required info
     1. title
