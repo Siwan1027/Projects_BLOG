@@ -8,8 +8,9 @@
 - required info
     1. username
     2. password
-    3. like_postings
-    4. follow
+    3. like_postings(MtoM)
+    4. follow(MtoM)
+    5. caught(MtoM)
 ### Posting
 - required info
     1. title
@@ -33,7 +34,7 @@
 - auth
     1. title
     2. password
-### reply
+### ReplyForm
 - auth
     1. content
 
