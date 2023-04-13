@@ -1,0 +1,38 @@
+{% if request.user.is_authenticated %}
+<div class="col-md-3">
+    <ul>
+        <a href="{% url 'account:profile' user.username %}" 
+        style = 'font-size: 32px'>
+        {{user.username}}
+        </a>
+    </ul>
+    <ul>내 글 {{ user.posting_set.count }}</ul>
+    <ul>내 댓글 {{ user.reply_set.count }}</ul>
+    <ul>팔로잉 {{ user.follow.count }} </ul>
+    <ul>팔로워 {{user.follower.count}} </ul>
+    <ul>
+    {% comment %} href to create {% endcomment %}
+        <a href="{% url 'board:create' %}">
+            <button type="button" class="btn btn-primary"> 새 글 작성 </button>
+        </a>
+    </ul>
+    <ul>
+        <a href="{% url 'account:signout' %}">
+            <button type="button" class="btn btn-primary">로그아웃</button>
+        </a>
+    </ul>
+</div>
+{% else %}
+<div class="col-md-3">
+    <div class = 'container-fluid m-3'>
+        <a href="{% url 'account:signin' %}">
+            <button type="button" class="btn btn-primary btn-lg">로그인</button>
+        </a>
+    </div>
+    <div class = 'container-fluid m-3'>
+        <a href="{% url 'account:signup' %}">
+            <button type="button" class="btn btn-primary btn-lg">회원가입</button>
+        </a>
+    </div>
+</div>
+{% endif %}

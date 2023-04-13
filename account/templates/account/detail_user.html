@@ -1,6 +1,57 @@
-{% extends 'base.html' %}
+<!--accounts/profile.html-->
+{% extends 'account_base.html' %}
 {% block content %}
 
-
-
+<h1>{{profile_user.username}}의 프로필</h1>
+    {% if profile_user.username != request.user.username %}
+        <form action="{% url 'account:follow' profile_user.username %}" method="POST">
+            {% csrf_token %}
+            {% if user_following %}
+                <button>언팔로우</button>
+            {% else %}
+            <button>팔로우</button>
+            {% endif %}
+        </form>
+    {% endif %}
+<div class="container py-5">
+    <div class="row">
+      <div class="col-md-6 flex-fill">
+        <h2> 내 글 </h2>
+            <ul>
+                {% for posting in profile_user.posting_set.all %}
+                <li>
+                    <a href="{% url 'board:detail' posting.pk %}">{{ posting.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+      </div>
+      <div class="col-md-6 flex-fill">
+        <h2> 내 댓글 </h2>
+            <ul>
+                {% for reply in profile_user.reply_set.all %}
+                    <li>
+                        <a href="{% url 'board:detail' reply.posting.pk %}">{{ reply.content }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 flex-fill">
+        <h2> 팔로우 </h2>
+        <ul>
+            <p style = 'font-size 15'>{{profile_user.follow.count}} 명</p>  
+        </ul>
+      </div>
+      <div class="col-md-6 flex-fill">
+        <h2> 팔로워 </h2>
+        <ul>
+            <p style = 'font-size 15'>{{profile_user.follower.count}} 명</p>
+        </ul>
+      </div>
+    </div>
+  </div>
+    
 {% endblock content %}

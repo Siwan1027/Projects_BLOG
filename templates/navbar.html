@@ -1,32 +1,38 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'board:index' %}">Navbar</a>
+      <a class="navbar-brand" href="{% url 'board:index' %}">
+        <img class = 'img-fluid' width='100px' heigh='100px' src="https://blog.kakaocdn.net/dn/6Yr5Z/btqCymfM6RQ/bqyCiPRsnRClX3bN7TymK0/img.png" alt="home icon">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'board:posting_list' %}">Postings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="{% url 'board:fishlist' %}">now available</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              도감
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">물고기</a></li>
+              <li><a class="dropdown-item" href="#">곤충</a></li>
+              <li><a class="dropdown-item" href="#">해산물</a></li>
+              <li><a class="dropdown-item" href="#">화석</a></li>
+              <li><a class="dropdown-item" href="#">가구</a></li>
+              <li><a class="dropdown-item" href="#">주민</a></li>
+              <li><a class="dropdown-item" href="#">이벤트</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
         </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>

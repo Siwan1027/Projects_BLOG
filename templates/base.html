@@ -10,43 +10,9 @@
 <body>
     {% load bootstrap5%}
     {% include 'navbar.html' %}
-    <div class="container-fluid ">
+    <div class="container-fluid py-5">
         <div class="row">
-            {% if request.user.is_authenticated %}
-                <div class="col-md-3">
-                    <ul>
-                        <a href="#">{{user.username}}</a>
-                    </ul>
-                    <ul>postings</ul>
-                    <ul>replies</ul>
-                    <ul>follow</ul>
-                    <ul>follower</ul>
-                    <ul>
-                    {% comment %} href to create {% endcomment %}
-                        <a href="{% url 'board:create' %}">
-                            <button type="button" class="btn btn-primary"> new posting</button>
-                        </a>
-                    </ul>
-                    <ul>
-                        <a href="{% url 'account:signout' %}">
-                            <button type="button" class="btn btn-primary">log out</button>
-                        </a>
-                    </ul>
-                </div>
-            {% else %}
-                <div class="col-md-3">
-                    <div class = 'container-fluid'>
-                        <a href="{% url 'account:signin' %}">
-                            <button type="button" class="btn btn-primary btn-lg">sign in</button>
-                        </a>
-                    </div>
-                    <div class = 'container-fluid'>
-                        <a href="{% url 'account:signup' %}">
-                            <button type="button" class="btn btn-primary btn-lg">sign up</button>
-                        </a>
-                    </div>
-                </div>
-        {% endif %}
+            {% include 'sidebar.html' %}
             <div class="col-md-9">
                 {% block content %}
                 {% endblock content%}

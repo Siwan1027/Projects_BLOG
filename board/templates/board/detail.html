@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<h1>{{ posting.title }}</h1>
+<h2>작성자 : <a href="{% url 'account:profile' posting.user.username %}"> {{ posting.user.username }} </a></h2>
+<p>
+    {{ posting.content | linebreaksbr }}
+</p>
+
+{% if request.user.is_authenticated %}
+    {% if request.user.username != posting.user.username %}
+        <form action="{% url 'board:like_posting' posting.pk %}" method = "POST">
+            {% csrf_token %}
+            {% if  is_like %}
+                <button>👍❌</button>
+            {% else %}
+                <button>👍</button>({{posting.like_users.count}})
+            {% endif %}
+        </form>
+    {% else %}
+    <div class="d-inline">
+        <a href="{% url 'board:update' posting.pk %}" class="btn btn-primary">수정</a>
+        <form action="{% url 'board:delete' posting.pk %}" 
+        method="POST"
+        style="display: inline-block;"
+        >
+          {% csrf_token %}
+          <button class="btn btn-primary">삭제</button>
+        </form>
+    </div>
+      
+
+
+    {% endif %}
+{% endif %}
+<div>
+    <p>댓글 작성</p>
+    <form action="{% url 'board:create_reply' posting.pk %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button>작성</button>
+    </form>
+</div>
+
+<div>
+    <p>댓글 목록</p>
+    {% if replies %}
+    <ul>
+        {% for reply in replies %}
+        <li>
+            {{ reply.user }}: {{ reply.content }}
+
+            {% if request.user == reply.user %}
+            <form 
+                action="{% url 'board:delete_reply' posting.pk reply.pk %}"
+                method="POST"
+                style="display: inline-block;"
+            >
+                {% csrf_token %}
+                <button>삭제</button>
+            </form>
+            {% endif %}
+
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>첫 댓글을 작성해 주세요 :)</p>
+    {% endif %}
+</div>
+{% endblock content %}
